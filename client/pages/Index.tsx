@@ -218,8 +218,34 @@ export default function Index() {
   const [selectedNumber, setSelectedNumber] = useState<string | null>(null);
   const [selectedName, setSelectedName] = useState<string | null>(null);
 
+  function isExcludedName(name: string) {
+    const n = String(name || "").trim();
+    if (!n) return true;
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const monthRe = new RegExp(`\\b(${months.join("|")})\\b`, "i");
+    if (monthRe.test(n)) return true;
+    if (/^column\s*\d+$/i.test(n)) return true;
+    if (/^\d{4,}$/.test(n)) return true; // long numeric-only tokens (likely Excel serials)
+    return false;
+  }
+
   const filteredEmployees = useMemo(() => {
-    const list = employeesQuery.data?.employees ?? [];
+    const list = (employeesQuery.data?.employees ?? []).filter(
+      (e) => !isExcludedName(e.name),
+    );
     if (!search) return list.slice(0, 50);
     const q = search.toLowerCase();
     return list
