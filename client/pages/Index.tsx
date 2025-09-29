@@ -347,7 +347,9 @@ export default function Index() {
               </Select>
             </div>
             <div className="sm:col-span-1">
-              <label className="mb-2 block text-sm font-medium">Total employees</label>
+              <label className="mb-2 block text-sm font-medium">
+                Total employees
+              </label>
               <div className="rounded-md border p-3 text-3xl font-extrabold tracking-tight bg-card">
                 {totalEmployees}
               </div>
