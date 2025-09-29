@@ -295,8 +295,7 @@ export default function Index() {
           ATD Sonata
         </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Attendance report viewer. Select a file and search by Employee No or
-          Name (from the "Present" sheet, columns B and C).
+          Attendance report viewer..
         </p>
       </section>
 
